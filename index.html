@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractal Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- WebGL canvas -->
+    <canvas id="glCanvas"></canvas>
+
+    <!-- fractal selector panel -->
+    <div id="ui-panel" class="hidden">
+        <div id="ui-title">FRACTAL EXPLORER</div>
+
+        <div id="fractal-list">
+            <div class="fractal-item active" data-fractal="menger">
+                <span class="fractal-name">Menger Sponge</span>
+                <span class="fractal-tag">ACTIVE</span>
+            </div>
+            <div class="fractal-item locked" data-fractal="mandelbulb">
+                <span class="fractal-name">Mandelbulb</span>
+                <span class="fractal-tag">SOON</span>
+            </div>
+            <div class="fractal-item locked" data-fractal="mandelbox">
+                <span class="fractal-name">Mandelbox</span>
+                <span class="fractal-tag">SOON</span>
+            </div>
+            <div class="fractal-item locked" data-fractal="julia">
+                <span class="fractal-name">Julia Set 3D</span>
+                <span class="fractal-tag">SOON</span>
+            </div>
+        </div>
+
+        <div id="ui-divider"></div>
+
+        <div id="controls-hint">
+            <div class="hint-row"><kbd>W A S D</kbd> Move</div>
+            <div class="hint-row"><kbd>Mouse</kbd> Look</div>
+            <div class="hint-row"><kbd>Space</kbd> Up &nbsp; <kbd>Shift</kbd> Down</div>
+            <div class="hint-row"><kbd>Esc</kbd> Release cursor</div>
+        </div>
+    </div>
+    
+    <div id="click-hint" class="hidden">CLICK TO FLY</div>
+
+    <!-- stats overlay -->
+    <div id="stats">
+        <span id="fps-counter">-- FPS</span>
+    </div>
+
+    <!-- Initial overlay (shown before pointer lock) -->
+    <div id="start-overlay">
+        <div id="start-box">
+            <div id="start-title">FRACTAL EXPLORER</div>
+            <div id="start-subtitle">Real-time 3D raymarching</div>
+            <button id="start-btn">ENTER</button>
+        </div>
+    </div>
+
+    <script src="scripts/camera.js"></script>
+    <script src="scripts/renderer.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
