@@ -4,7 +4,7 @@ const Camera = (() => {
     let yaw   = 0;   // radians
     let pitch = 0;   // radians
 
-    const MOVE_SPEED   = 0.005;   // units per frame
+    const MOVE_SPEED   = 0.825;  // units per second
     const MOUSE_SENS   = 0.001;  // radians per pixel
     const PITCH_LIMIT  = Math.PI / 2 - 0.01;
 
@@ -25,8 +25,11 @@ const Camera = (() => {
     }
 
     // called once per frame from main.js
-    function update() {
+    // dt — time elapsed since previous frame, in seconds
+    function update(dt) {
         if (!isLocked()) return;
+
+        const step = MOVE_SPEED * dt;
 
         // Horizontal movement
         const forward = {
@@ -41,26 +44,26 @@ const Camera = (() => {
         };
 
         if (keys['KeyW']) {
-            position.x += forward.x * MOVE_SPEED;
-            position.z += forward.z * MOVE_SPEED;
+            position.x += forward.x * step;
+            position.z += forward.z * step;
         }
         if (keys['KeyS']) {
-            position.x -= forward.x * MOVE_SPEED;
-            position.z -= forward.z * MOVE_SPEED;
+            position.x -= forward.x * step;
+            position.z -= forward.z * step;
         }
         if (keys['KeyD']) {
-            position.x += right.x * MOVE_SPEED;
-            position.z += right.z * MOVE_SPEED;
+            position.x += right.x * step;
+            position.z += right.z * step;
         }
         if (keys['KeyA']) {
-            position.x -= right.x * MOVE_SPEED;
-            position.z -= right.z * MOVE_SPEED;
+            position.x -= right.x * step;
+            position.z -= right.z * step;
         }
 
         // Vertical movement
-        if (keys['Space'])      position.y -= MOVE_SPEED;
-        if (keys['ShiftLeft'])  position.y += MOVE_SPEED;
-        if (keys['ShiftRight']) position.y += MOVE_SPEED;
+        if (keys['Space'])      position.y -= step;
+        if (keys['ShiftLeft'])  position.y += step;
+        if (keys['ShiftRight']) position.y += step;
     }
 
     // Public getters (renderer reads these as uniform values)

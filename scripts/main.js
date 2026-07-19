@@ -9,10 +9,11 @@
     const FPS_INTERVAL = 500;  // update FPS display every 500ms
 
     function loop(now) {
-        const dt = now - lastTime;
+        const dtMs = now - lastTime;
         lastTime = now;
+        const dt = dtMs / 1000; // seconds — used for frame-rate independent movement
 
-        Camera.update();
+        Camera.update(dt);
 
         Renderer.draw(
             Camera.getPosition(),
@@ -22,7 +23,7 @@
         );
 
         frameCount++;
-        fpsTimer += dt;
+        fpsTimer += dtMs;
         if (fpsTimer >= FPS_INTERVAL) {
             const fps = Math.round(frameCount / (fpsTimer / 1000));
             UI.setFPS(fps);
