@@ -73,7 +73,7 @@ const ShaderCommon = (() => {
             vec3 p = origin + t * direction;
             vec3 n = calcNormal(p);
 
-            vec3 lightDir = normalize(vec3(1.0, -2.0, 1.0));
+            vec3 lightDir = normalize(vec3(0.5, -2.0, -1.0));
             float diffuse = max(dot(n, lightDir), 0.0);
             float ambient = 0.25;
 

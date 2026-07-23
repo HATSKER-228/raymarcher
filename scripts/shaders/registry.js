@@ -3,7 +3,7 @@ const FractalShaders = (() => {
     const registry = {
         0: MengerShader,
         // 1: MandelbulbShader,  //TODO
-        // 2: MandelboxShader,   //TODO
+        2: MandelboxShader,
         // 3: JuliaShader        //TODO
     };
 

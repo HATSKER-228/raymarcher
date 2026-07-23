@@ -1,6 +1,6 @@
 const Camera = (() => {
 
-    const position = { x: 0, y: 0, z: -3 };
+    const position = { x: 0, y: 0, z: -6 };
     let yaw   = 0;   // radians
     let pitch = 0;   // radians
 

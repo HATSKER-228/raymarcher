@@ -47,9 +47,9 @@ const UI = (() => {
     // Fractal selector
     document.querySelectorAll('.fractal-item:not(.locked)').forEach(item => {
         item.addEventListener('click', () => {
-            document.querySelectorAll('.fractal-item').forEach(i => {
+            document.querySelectorAll('.fractal-item:not(.locked)').forEach(i => {
                 i.classList.remove('active');
-                i.querySelector('.fractal-tag').textContent = 'SOON';
+                i.querySelector('.fractal-tag').textContent = '';
             });
             item.classList.add('active');
             item.querySelector('.fractal-tag').textContent = 'ACTIVE';
