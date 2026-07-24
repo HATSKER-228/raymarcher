@@ -71,6 +71,15 @@ const Camera = (() => {
     function getYaw()       { return yaw;   }
     function getPitch()     { return pitch; }
 
-    return { update, getPosition, getYaw, getPitch };
+    function setPosition(x, y, z) {
+        position.x = x;
+        position.y = y;
+        position.z = z;
+    }
+
+    function setYaw(v)   { yaw = v; }
+    function setPitch(v) { pitch = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, v));}
+    
+    return { update, getPosition, getYaw, getPitch, setPosition, setYaw, setPitch };
 
 })();

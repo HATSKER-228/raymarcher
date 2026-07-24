@@ -4,7 +4,7 @@ const MandelboxShader = {
         float map(vec3 point) {
             const int ITERATIONS = 12;
 
-            const float SCALE        = 2.5;
+            const float SCALE        = 3.0;
             const float MIN_RADIUS2  = 0.25;   // minRadius^2  (minRadius = 0.5)
             const float FIXED_RADIUS2 = 1.0;   // fixedRadius^2 (fixedRadius = 1.0)
 

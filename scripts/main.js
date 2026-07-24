@@ -15,12 +15,12 @@
 
         Camera.update(dt);
 
-        Renderer.draw(
-            Camera.getPosition(),
-            Camera.getYaw(),
-            Camera.getPitch(),
-            UI.getActiveFractalId()
-        );
+        const camPos = Camera.getPosition();
+        const camYaw = Camera.getYaw();
+        const camPitch = Camera.getPitch();
+
+        Renderer.draw(camPos, camYaw, camPitch, UI.getActiveFractalId());
+        UI.setStats(camPos, camYaw, camPitch);
 
         frameCount++;
         fpsTimer += dtMs;
