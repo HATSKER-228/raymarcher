@@ -10,12 +10,20 @@ const Camera = (() => {
 
     const keys = {};
 
+    function normalizeAngle(a) {
+        a %= 2 * Math.PI;
+        if (a > Math.PI)  a -= 2 * Math.PI;
+        if (a < -Math.PI) a += 2 * Math.PI;
+        return a;
+    }
+
     document.addEventListener('keydown', e => { keys[e.code] = true;  });
     document.addEventListener('keyup',   e => { keys[e.code] = false; });
 
     document.addEventListener('mousemove', e => {
         if (!isLocked()) return;
         yaw   += e.movementX * MOUSE_SENS;
+        yaw = normalizeAngle(yaw);
         pitch += e.movementY * MOUSE_SENS;
         pitch  = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, pitch));
     });
@@ -77,8 +85,8 @@ const Camera = (() => {
         position.z = z;
     }
 
-    function setYaw(v)   { yaw = v; }
-    function setPitch(v) { pitch = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, v));}
+    function setYaw(v)   { yaw = normalizeAngle(v); }
+    function setPitch(v) { pitch = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, v)); }
     
     return { update, getPosition, getYaw, getPitch, setPosition, setYaw, setPitch };
 
