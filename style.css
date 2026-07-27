@@ -155,37 +155,21 @@ kbd {
   50%       { opacity: 1;   }
 }
 
-/* Stats (top-right) */
-#stats {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    font-size: 11px;
-    background: var(--bg-panel);
-    padding: 8px 8px;
-    border: 1px solid var(--border);
-    color: var(--text);
-    letter-spacing: 0.1em;
-    z-index: 10;
+/* Location copy/paste */
+#loc-copypaste {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     gap: 6px;
-    text-align: right;
 }
 
-#pos-line, #ang-line {
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-}
-
-#loc-row {
+.loc-row {
     display: flex;
     gap: 6px;
 }
 
 #loc-input {
-    width: 180px;
+    flex: 1;
+    min-width: 0;
     background: var(--bg-panel);
     border: 1px solid var(--accent);
     color: var(--text);
@@ -212,6 +196,10 @@ kbd {
     white-space: nowrap;
 }
 
+#copy-loc-btn {
+    flex: 1;
+}
+
 #copy-loc-btn:hover, #goto-loc-btn:hover {
     background: var(--accent);
     color: #000;
@@ -220,6 +208,29 @@ kbd {
 #copy-loc-btn.copied {
     background: var(--accent);
     color: #000;
+}
+
+/* Stats (top-right) */
+#stats {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    font-size: 11px;
+    background: var(--bg-panel);
+    padding: 8px 8px;
+    color: var(--text);
+    letter-spacing: 0.1em;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    text-align: right;
+}
+
+#pos-line, #ang-line {
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
 }
 
 /* Initial overlay */

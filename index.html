@@ -42,6 +42,18 @@
             <div class="hint-row"><kbd>Space</kbd> Up &nbsp; <kbd>Shift</kbd> Down</div>
             <div class="hint-row"><kbd>Esc</kbd> Release cursor</div>
         </div>
+        
+        <div id="ui-divider"></div>
+
+        <div id="loc-copypaste">
+            <div class="loc-row">
+                <input id="loc-input" type="text" placeholder="fractal:x,y,z,yaw,pitch">
+                <button id="goto-loc-btn">GO</button>
+            </div>
+            <div class="loc-row">
+                <button id="copy-loc-btn" title="Copy current location">COPY LOCATION</button>
+            </div>
+        </div>
     </div>
     
     <div id="click-hint" class="hidden">CLICK TO FLY</div>
@@ -51,13 +63,6 @@
         <span id="fps-counter">-- FPS</span>
         <div id="pos-line">XYZ: 0.000, 0.000, 0.000</div>
         <div id="ang-line">YAW: 0.0°  PITCH: 0.0°</div>
-        <div id="loc-row">
-            <input id="loc-input" type="text" placeholder="fractal:x,y,z,yaw,pitch">
-            <button id="goto-loc-btn">GO</button>
-        </div>
-        <div id="loc-row">
-            <button id="copy-loc-btn" title="Copy current location">COPY LOC</button>
-        </div>
     </div>
 
     <!-- Initial overlay (shown before pointer lock) -->
