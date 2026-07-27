@@ -40,7 +40,7 @@
             const fps = Math.round(frameCount / (fpsUpdateTimer / 1000));
             UI.setDisplayedFPS(fps);
             frameCount = 0;
-            fpsTimer   = 0;
+            fpsUpdateTimer = 0;
         }
 
         requestAnimationFrame(loop);
