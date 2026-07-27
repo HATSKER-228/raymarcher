@@ -66,7 +66,7 @@ const UI = (() => {
         item.addEventListener('click', () => selectFractal(item.dataset.fractal));
     });
 
-    function setFPS(fps) {
+    function setDisplayedFPS(fps) {
         fpsCounter.textContent = fps + ' FPS';
     }
 
@@ -128,6 +128,6 @@ const UI = (() => {
         return FRACTAL_IDS[activeFractal] ?? 0;
     }
 
-    return { setFPS, setStats, getActiveFractalId };
+    return { setDisplayedFPS, setStats, getActiveFractalId };
 
 })();
