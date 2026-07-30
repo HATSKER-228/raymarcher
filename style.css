@@ -48,7 +48,16 @@ body {
     transition: opacity 0.4s;
 }
 
-#ui-title {
+#ui-panel.hidden { display: none; }
+.tab-hidden      { display: none; }
+
+#ui-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 14px 0;
+}
+
+#tab-title {
     font-size: 15px;
     letter-spacing: 0.25em;
     color: var(--accent);
@@ -56,6 +65,9 @@ body {
     display: grid;
     place-items: center;
 }
+
+
+/* ------ MAIN TAB ------ */
 
 /* Fractal list */
 #fractal-list {
@@ -104,12 +116,6 @@ body {
     color: var(--text-dim);
 }
 
-#ui-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 14px 0;
-}
-
 /* Controls hint */
 #controls-hint {
     display: flex;
@@ -134,6 +140,10 @@ kbd {
     color: var(--accent);
 }
 
+/* ------ SETTINGS TAB ------ */
+
+
+/* Hint to click */
 #click-hint {
     position: fixed;
     bottom: 52px;
@@ -148,7 +158,6 @@ kbd {
 }
 
 #click-hint.hidden { display: none; }
-#ui-panel.hidden   { display: none; }
 
 @keyframes pulse {
   0%, 100% { opacity: 0.4; }

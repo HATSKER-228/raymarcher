@@ -13,53 +13,62 @@
 
     <!-- fractal selector panel -->
     <div id="ui-panel" class="hidden">
-        <div id="ui-title">FRACTAL EXPLORER</div>
-
-        <div id="fractal-list">
-            <div class="fractal-item active" data-fractal="menger">
-                <span class="fractal-name">Menger Sponge</span>
-                <span class="fractal-tag">ACTIVE</span>
-            </div>
-            <div class="fractal-item locked" data-fractal="mandelbulb">
-                <span class="fractal-name">Mandelbulb</span>
-                <span class="fractal-tag">SOON</span>
-            </div>
-            <div class="fractal-item" data-fractal="mandelbox">
-                <span class="fractal-name">Mandelbox</span>
-                <span class="fractal-tag"></span>
-            </div>
-            <div class="fractal-item locked" data-fractal="julia">
-                <span class="fractal-name">Julia Set 3D</span>
-                <span class="fractal-tag">SOON</span>
-            </div>
+        <div id="tabs-row">
+            <div id="main-tab-btn" class="tab-btn-active">MAIN</div>
+            <div id="settings-tab-btn">SETTINGS</div> 
         </div>
+        <div id="tabs">
+            <div id="main-tab" class="tab-active">
+                <div id="tab-title">FRACTAL EXPLORER</div>
 
-        <div id="ui-divider"></div>
+                <div id="fractal-list">
+                    <div class="fractal-item active" data-fractal="menger">
+                        <span class="fractal-name">Menger Sponge</span>
+                        <span class="fractal-tag">ACTIVE</span>
+                    </div>
+                    <div class="fractal-item locked" data-fractal="mandelbulb">
+                        <span class="fractal-name">Mandelbulb</span>
+                        <span class="fractal-tag">SOON</span>
+                    </div>
+                    <div class="fractal-item" data-fractal="mandelbox">
+                        <span class="fractal-name">Mandelbox</span>
+                        <span class="fractal-tag"></span>
+                    </div>
+                    <div class="fractal-item locked" data-fractal="julia">
+                        <span class="fractal-name">Julia Set 3D</span>
+                        <span class="fractal-tag">SOON</span>
+                    </div>
+                </div>
 
-        <div id="controls-hint">
-            <div class="hint-row"><kbd>W A S D</kbd> Move</div>
-            <div class="hint-row"><kbd>Mouse</kbd> Look</div>
-            <div class="hint-row"><kbd>Space</kbd> Up &nbsp; <kbd>Shift</kbd> Down</div>
-            <div class="hint-row"><kbd>Esc</kbd> Release cursor</div>
-        </div>
-        
-        <div id="ui-divider"></div>
+                <div id="ui-divider"></div>
 
-        <div id="loc-copypaste">
-            <div class="loc-row">
-                <input id="loc-input" type="text" placeholder="fractal:x,y,z,yaw,pitch">
-                <button id="goto-loc-btn">GO</button>
+                <div id="controls-hint">
+                    <div class="hint-row"><kbd>W A S D</kbd> Move</div>
+                    <div class="hint-row"><kbd>Mouse</kbd> Look</div>
+                    <div class="hint-row"><kbd>Space</kbd> Up &nbsp; <kbd>Shift</kbd> Down</div>
+                    <div class="hint-row"><kbd>Esc</kbd> Release cursor</div>
+                </div>
+                
+                <div id="ui-divider"></div>
+
+                <div id="loc-copypaste">
+                    <div class="loc-row">
+                        <input id="loc-input" type="text" placeholder="fractal:x,y,z,yaw,pitch" title="Paste location">
+                        <button id="goto-loc-btn">GO</button>
+                    </div>
+                    <div class="loc-row">
+                        <button id="copy-loc-btn" title="Copy current location">COPY LOCATION</button>
+                    </div>
+                </div>
             </div>
-            <div class="loc-row">
-                <button id="copy-loc-btn" title="Copy current location">COPY LOCATION</button>
-            </div>
+
+            <div id="settings-tab" class="tab-hidden"></div>
         </div>
     </div>
     
     <div id="click-hint" class="hidden">CLICK TO FLY</div>
 
-    <!-- stats overlay -->
-    <div id="stats">
+    <div id="HUD">
         <span id="fps-counter">-- FPS</span>
         <div id="pos-line">XYZ: 0.000, 0.000, 0.000</div>
         <div id="ang-line">YAW: 0.0°  PITCH: 0.0°</div>
