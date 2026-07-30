@@ -210,8 +210,8 @@ kbd {
     color: #000;
 }
 
-/* Stats (top-right) */
-#stats {
+/* HUD (top-right) */
+#HUD {
     position: fixed;
     top: 24px;
     right: 24px;
