@@ -48,3 +48,12 @@
 .tab-hidden {
     display: none;
 }
+
+.tab-title {
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: grid;
+    place-items: center;
+}
