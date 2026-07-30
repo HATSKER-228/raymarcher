@@ -1,0 +1,50 @@
+/* ==========================================================================
+   panel.css
+   Shared "shell" of the left UI panel: the frame itself, title, divider,
+   and hidden state. Anything common to ALL tabs lives here.
+   Tab-specific content goes in tab-main.css / tab-settings.css.
+   ========================================================================== */
+
+/* UI panel (top-left) */
+#ui-panel {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    width: 250px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 18px 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10;
+    transition: opacity 0.4s;
+}
+
+#ui-panel.hidden { display: none; }
+
+#ui-title {
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: grid;
+    place-items: center;
+}
+
+#ui-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 14px 0;
+}
+
+/* --------------------------------------------------------------------
+   Tabs shell (tabs-row + tabs container).
+   NOTE: placeholder — trapezoid tab styling (clip-path, active/inactive
+   states, positioning along the left edge of #ui-panel) is not
+   implemented yet. Add it here once ready; it's shared shell, not
+   per-tab content.
+   -------------------------------------------------------------------- */
+
+.tab-hidden {
+    display: none;
+}

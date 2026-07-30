@@ -1,0 +1,131 @@
+/* ==========================================================================
+   tab-main.css
+   Content specific to the MAIN tab: fractal selector list, controls hint,
+   and the location copy/paste widget.
+   ========================================================================== */
+
+/* Fractal list */
+#fractal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fractal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 13px;
+}
+
+.fractal-item.active {
+    border-color: var(--accent);
+    background: rgba(0, 255, 231, 0.07);
+}
+
+.fractal-item.locked {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.fractal-item:not(.locked):not(.active):hover {
+    border-color: var(--dim);
+    background: rgba(0, 255, 231, 0.03);
+}
+
+.fractal-name {
+    color: var(--text);
+}
+
+.fractal-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+}
+
+.fractal-item.locked .fractal-tag {
+    color: var(--text-dim);
+}
+
+/* Controls hint */
+#controls-hint {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hint-row {
+    font-size: 13px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+kbd {
+    background: rgba(0, 255, 231, 0.08);
+    border: 1px solid var(--border);
+    padding: 1px 5px;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--accent);
+}
+
+/* Location copy/paste */
+#loc-copypaste {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.loc-row {
+    display: flex;
+    gap: 6px;
+}
+
+#loc-input {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg-panel);
+    border: 1px solid var(--accent);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 11px;
+    padding: 4px 6px;
+    letter-spacing: 0.05em;
+}
+
+#loc-input::placeholder {
+    color: var(--text-dim);
+}
+
+#copy-loc-btn, #goto-loc-btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+#copy-loc-btn {
+    flex: 1;
+}
+
+#copy-loc-btn:hover, #goto-loc-btn:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+#copy-loc-btn.copied {
+    background: var(--accent);
+    color: #000;
+}

@@ -4,7 +4,7 @@
 
     // FPS
     const FPS_CAPS = [30, 60, 90, 120, null];
-    let curCap = 90;
+    let curCap = 120;
     let renderInterval = curCap ? 1000 / curCap : 0;
     let renderTimer = 0;
 

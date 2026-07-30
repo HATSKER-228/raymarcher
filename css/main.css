@@ -1,0 +1,117 @@
+/* ==========================================================================
+   main.css
+   Base reset, global CSS variables, canvas, and top-level overlays
+   (click-hint + start-overlay). Load this file first — it defines the
+   custom properties (--accent, --bg-panel, etc.) used by every other file.
+   ========================================================================== */
+
+/* Reset & base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent:   #00ffe7;
+    --dim:      rgba(0, 255, 231, 0.45);
+    --bg-panel: rgba(5, 8, 14, 0.82);
+    --border:   rgba(0, 255, 231, 0.18);
+    --text:     #c8d8e0;
+    --text-dim: rgba(200, 216, 224, 0.4);
+    --font:     'Courier New', Courier, monospace;
+}
+
+body {
+    background: #000;
+    color: var(--text);
+    font-family: var(--font);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* WebGL canvas */
+#glCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+}
+
+/* "CLICK TO FLY" hint */
+#click-hint {
+    position: fixed;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    z-index: 10;
+    animation: pulse 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+#click-hint.hidden { display: none; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1;   }
+}
+
+/* Initial overlay (shown before pointer lock) */
+#start-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 100;
+    transition: opacity 0.5s;
+}
+
+#start-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#start-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#start-title {
+    font-size: 32px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+}
+
+#start-subtitle {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+}
+
+#start-btn {
+    margin-top: 12px;
+    padding: 12px 40px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font);
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+#start-btn:hover {
+    background: var(--accent);
+    color: #000;
+}
