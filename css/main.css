@@ -1,10 +1,3 @@
-/* ==========================================================================
-   main.css
-   Base reset, global CSS variables, canvas, and top-level overlays
-   (click-hint + start-overlay). Load this file first — it defines the
-   custom properties (--accent, --bg-panel, etc.) used by every other file.
-   ========================================================================== */
-
 /* Reset & base */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -13,10 +6,10 @@
 }
 
 :root {
-    --accent:   #00ffe7;
+    --accent:   rgb(0, 255, 231);
     --dim:      rgba(0, 255, 231, 0.45);
-    --bg-panel: rgba(5, 8, 14, 0.82);
     --border:   rgba(0, 255, 231, 0.18);
+    --bg-panel: rgba(5, 8, 14, 0.82);
     --text:     #c8d8e0;
     --text-dim: rgba(200, 216, 224, 0.4);
     --font:     'Courier New', Courier, monospace;

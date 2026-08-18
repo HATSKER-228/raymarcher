@@ -1,8 +1,4 @@
-/* ==========================================================================
-   hud.css
-   Styles for the HUD overlay (top-right): FPS counter, position, angles.
-   ========================================================================== */
-
+/* top-right hud */
 #HUD {
     position: fixed;
     top: 24px;

@@ -1,9 +1,3 @@
-/* ==========================================================================
-   tab-main.css
-   Content specific to the MAIN tab: fractal selector list, controls hint,
-   and the location copy/paste widget.
-   ========================================================================== */
-
 /* Fractal list */
 #fractal-list {
     display: flex;
@@ -51,7 +45,7 @@
     color: var(--text-dim);
 }
 
-/* Controls hint */
+/* Controls hints */
 #controls-hint {
     display: flex;
     flex-direction: column;

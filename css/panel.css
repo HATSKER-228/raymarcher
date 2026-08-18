@@ -1,18 +1,11 @@
-/* ==========================================================================
-   panel.css
-   Shared "shell" of the left UI panel: the frame itself, title, divider,
-   and hidden state. Anything common to ALL tabs lives here.
-   Tab-specific content goes in tab-main.css / tab-settings.css.
-   ========================================================================== */
-
 /* UI panel (top-left) */
 #ui-panel {
     position: fixed;
     top: 24px;
-    left: 24px;
+    left: 36px;
     width: 250px;
     background: var(--bg-panel);
-    border: 1px solid var(--border);
+    border: 1px solid var(--dim);
     padding: 18px 16px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -22,28 +15,13 @@
 
 #ui-panel.hidden { display: none; }
 
-#ui-title {
-    font-size: 15px;
-    letter-spacing: 0.25em;
-    color: var(--accent);
-    margin-bottom: 16px;
-    display: grid;
-    place-items: center;
-}
-
 #ui-divider {
     height: 1px;
     background: var(--border);
     margin: 14px 0;
 }
 
-/* --------------------------------------------------------------------
-   Tabs shell (tabs-row + tabs container).
-   NOTE: placeholder — trapezoid tab styling (clip-path, active/inactive
-   states, positioning along the left edge of #ui-panel) is not
-   implemented yet. Add it here once ready; it's shared shell, not
-   per-tab content.
-   -------------------------------------------------------------------- */
+/* tabs */
 
 .tab-hidden {
     display: none;
@@ -56,4 +34,56 @@
     margin-bottom: 16px;
     display: grid;
     place-items: center;
+}
+
+#tabs-row {
+    position: absolute;
+    top: 56px;
+    left: -23px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#main-tab-btn,
+#settings-tab-btn {
+    position: relative;
+    width: 22px;
+    height: 100px;
+    z-index: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    writing-mode: sideways-lr;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: var(--text-dim);
+    
+    background: var(--border); /* border color */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    cursor: pointer;
+
+    clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+#main-tab-btn::before,
+#settings-tab-btn::before {
+    content: '';
+    position: absolute;
+    inset: 1px 0px 1px 1px;
+    clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%);
+    background: var(--bg-panel); /* btn color */
+    z-index: -1;
+}
+ 
+#main-tab-btn.tab-btn-active,
+#settings-tab-btn.tab-btn-active {
+    background: var(--dim); /*border color of active btn*/
+    color: var(--text);
 }
