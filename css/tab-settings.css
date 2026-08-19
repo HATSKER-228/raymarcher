@@ -1,0 +1,45 @@
+/* sliders */
+
+#sliders-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.setting-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-label {
+    color: var(--text);
+    font-size: 13px;
+}
+
+.setting-span {
+    color: var(--accent);
+    font-size: 13px;
+}
+
+input[type="range"] {
+    accent-color: var(--accent);
+    width: 100%;
+    background: transparent;
+}
+
+#hud-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input[type="checkbox"] {
+    accent-color: var(--accent);
+}

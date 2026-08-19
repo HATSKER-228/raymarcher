@@ -68,6 +68,30 @@
 
             <div id="settings-tab" data-tab="settings" class="tab hidden">
                 <div class="tab-title">SETTINGS</div>
+            
+                <div id="sliders-group">
+                    <div class="setting-item">
+                        <div class="setting-label-row">
+                            <label class="setting-label">Mouse sensevity</label>
+                            <span id="mouse-sens-span" class="setting-span">0.001</span>
+                        </div>
+                        <input type="range" id="mouse-sens-slider" min="0.0001" max="0.005" value="0.001" step="0.0001">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label-row">
+                            <label class="setting-label">Moving speed</label>
+                            <span id="move-speed-span" class="setting-span">0.825</span>
+                        </div>
+                        <input type="range" id="move-speed-slider" min="0.1" max="3.0" value="0.825" step="0.05">
+                    </div>
+                </div>
+
+                <div id="ui-divider"></div>
+
+                <div id="hud-toggle-row">
+                    <input type="checkbox" checked id="hud-toggle">
+                    <label>Show HUD</label>
+                </div>
             </div>
         </div>
     </div>
@@ -94,6 +118,7 @@
     <script src="js/shaders/mandelbox.js"></script>
     <script src="js/shaders/registry.js"></script>
     <script src="js/camera.js"></script>
+    <script src="js/setting.js"></script>
     <script src="js/renderer.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>

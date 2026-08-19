@@ -54,7 +54,7 @@
 
 .hint-row {
     font-size: 13px;
-    color: var(--text-dim);
+    color: var(--text);
     display: flex;
     align-items: center;
     gap: 8px;

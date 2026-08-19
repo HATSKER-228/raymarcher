@@ -20,3 +20,7 @@
     color: var(--text);
     font-variant-numeric: tabular-nums;
 }
+
+#HUD.hidden {
+    display: None;
+}

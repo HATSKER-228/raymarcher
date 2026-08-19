@@ -4,8 +4,8 @@ const Camera = (() => {
     let yaw   = 0;   // radians
     let pitch = 0;   // radians
 
-    const MOVE_SPEED   = 0.825;  // units per second
-    const MOUSE_SENS   = 0.001;  // radians per pixel
+    let moveSpeed   = 0.825;  // units per second
+    let mouseSens   = 0.001;  // radians per pixel
     const PITCH_LIMIT  = Math.PI / 2 - 0.01;
 
     const keys = {};
@@ -22,9 +22,9 @@ const Camera = (() => {
 
     document.addEventListener('mousemove', e => {
         if (!isLocked()) return;
-        yaw   += e.movementX * MOUSE_SENS;
+        yaw   += e.movementX * mouseSens;
         yaw = normalizeAngle(yaw);
-        pitch += e.movementY * MOUSE_SENS;
+        pitch += e.movementY * mouseSens;
         pitch  = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, pitch));
     });
 
@@ -37,7 +37,7 @@ const Camera = (() => {
     function update(dt) {
         if (!isLocked()) return;
 
-        const step = MOVE_SPEED * dt;
+        const step = moveSpeed * dt;
 
         // Horizontal movement
         const forward = {
@@ -88,6 +88,9 @@ const Camera = (() => {
     function setYaw(v)   { yaw = normalizeAngle(v); }
     function setPitch(v) { pitch = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, v)); }
     
-    return { update, getPosition, getYaw, getPitch, setPosition, setYaw, setPitch };
+    function setMouseSens(v) { mouseSens = v; }
+    function setMoveSpeed(v) { moveSpeed = v; }
+
+    return { update, getPosition, getYaw, getPitch, setPosition, setYaw, setPitch, setMouseSens, setMoveSpeed};
 
 })();
