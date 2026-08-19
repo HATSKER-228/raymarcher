@@ -66,6 +66,24 @@ const UI = (() => {
         item.addEventListener('click', () => selectFractal(item.dataset.fractal));
     });
 
+
+    function selectTab(name) {
+        document.querySelectorAll('.tab-btn').forEach(i => { i.classList.remove('active'); });
+        document.querySelectorAll('.tab').forEach(i => { i.classList.add('hidden'); });
+
+        const btn = document.querySelector(`.tab-btn[data-tab=${name}]`);
+        if (!btn) return false;
+        btn.classList.add('active');
+
+        const tab = document.querySelector(`.tab[data-tab=${name}]`);
+        if (!tab) return false;
+        tab.classList.remove('hidden');
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(item => {
+        item.addEventListener('click', () => selectTab(item.dataset.tab));
+    });
+
     function setDisplayedFPS(fps) {
         fpsCounter.textContent = fps + ' FPS';
     }

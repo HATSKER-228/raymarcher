@@ -18,11 +18,11 @@
     <!-- fractal selector panel -->
     <div id="ui-panel" class="hidden">
         <div id="tabs-row">
-            <div id="main-tab-btn" class="tab-btn-active">MAIN</div>
-            <div id="settings-tab-btn">SETTINGS</div> 
+            <div id="main-tab-btn"     data-tab="main"     class="tab-btn active">MAIN</div>
+            <div id="settings-tab-btn" data-tab="settings" class="tab-btn">SETTINGS</div> 
         </div>
         <div id="tabs-container">
-            <div id="main-tab" class="tab-active">
+            <div id="main-tab" data-tab="main" class="tab">
                 <div class="tab-title">FRACTAL EXPLORER</div>
 
                 <div id="fractal-list">
@@ -66,7 +66,9 @@
                 </div>
             </div>
 
-            <div id="settings-tab" class="tab-hidden"></div>
+            <div id="settings-tab" data-tab="settings" class="tab hidden">
+                <div class="tab-title">SETTINGS</div>
+            </div>
         </div>
     </div>
     

@@ -23,7 +23,15 @@
 
 /* tabs */
 
-.tab-hidden {
+#tabs-container {
+    height: 384px;
+}
+
+.tab {
+    height: 100%;
+}
+
+.tab.hidden {
     display: none;
 }
 
@@ -82,8 +90,8 @@
     z-index: -1;
 }
  
-#main-tab-btn.tab-btn-active,
-#settings-tab-btn.tab-btn-active {
+#main-tab-btn.active,
+#settings-tab-btn.active {
     background: var(--dim); /*border color of active btn*/
     color: var(--text);
 }
