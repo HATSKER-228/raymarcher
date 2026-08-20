@@ -1,15 +1,16 @@
 const MengerShader = {
     name: 'menger',
     sdf: `
-        #define SIZE 4.0
         float map(vec3 p) {
+            const float SIZE = 4.0;
             p /= SIZE;
+
             float d = max(max(abs(p.x) - 1.0,
                               abs(p.y) - 1.0),
                               abs(p.z) - 1.0);
             float scale = 1.0;
 
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 8; i++) {
                 vec3 p = mod(p * scale, 2.0) - 1.0;
                 p = abs(1.0 - 3.0 * abs(p));
                 scale *= 3.0;

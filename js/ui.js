@@ -3,7 +3,7 @@ const UI = (() => {
         menger:     0,
         mandelbulb: 1,
         mandelbox:  2,
-        julia:      3,
+        sierpinski: 3,
     };
 
     let activeFractal = 'menger';  // default
