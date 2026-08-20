@@ -71,11 +71,11 @@ const UI = (() => {
         document.querySelectorAll('.tab-btn').forEach(i => { i.classList.remove('active'); });
         document.querySelectorAll('.tab').forEach(i => { i.classList.add('hidden'); });
 
-        const btn = document.querySelector(`.tab-btn[data-tab=${name}]`);
+        const btn = document.querySelector(`.tab-btn[data-tab="${name}"]`);
         if (!btn) return false;
         btn.classList.add('active');
 
-        const tab = document.querySelector(`.tab[data-tab=${name}]`);
+        const tab = document.querySelector(`.tab[data-tab="${name}"]`);
         if (!tab) return false;
         tab.classList.remove('hidden');
     }

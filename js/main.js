@@ -2,12 +2,7 @@
     const ok = Renderer.init();
     if (!ok) return;   // WebGL not available, Renderer already alerted the user
 
-    // FPS
-    const FPS_CAPS = [30, 60, 90, 120, null];
-    let curCap = 120;
-    let renderInterval = curCap ? 1000 / curCap : 0;
     let renderTimer = 0;
-
     let frameCount = 0;
     let fpsUpdateTimer = 0;            // accumulates ms since last FPS update
     const FPS_UPDATE_INTERVAL = 500;
@@ -15,6 +10,9 @@
     let last = performance.now();
 
     function loop(now) {
+        let fpsCap = Settings.getFpsCap();
+        let renderInterval = fpsCap ? 1000 / fpsCap : 0;
+
         const dtMs = now - last;
         const dt = dtMs / 1000; // seconds — used for frame-rate independent movement
         last = now;
@@ -24,7 +22,7 @@
 
         Camera.update(dt);
 
-        if (renderTimer >= renderInterval || curCap === null) {
+        if (renderTimer >= renderInterval || fpsCap === null) {
             const camPos = Camera.getPosition();
             const camYaw = Camera.getYaw();
             const camPitch = Camera.getPitch();
