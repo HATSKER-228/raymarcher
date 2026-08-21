@@ -32,6 +32,6 @@ const MandelboxShader = `
     }
 `;
 
-const param_scheme = [
-    {key: 'scale', label: 'Scale', uniform: 'u_scale', min: '0.5', max: '4.0', step: '0.05', default: '3.0'}
+const MandelboxParams = [
+    {key: 'scale', label: 'Scale', uniform: 'u_scale', min: 0.5, max: 4.0, step: 0.05, default: 3.0}
 ];

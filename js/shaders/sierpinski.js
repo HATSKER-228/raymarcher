@@ -36,6 +36,6 @@ const SierpinskiShader = `
     }
 `;
 
-const param_scheme = [
-    {key: 'scale', label: 'Scale', uniform: 'u_scale', min: '1.5', max: '10.0', step: '0.1', default: '2.0'}
+const SierpinskiParams = [
+    {key: 'scale', label: 'Scale', uniform: 'u_scale', min: 1.5, max: 10.0, step: 0.1, default: 2.0}
 ];

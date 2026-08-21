@@ -27,4 +27,4 @@ const MengerShader = `
     }
 `;
 
-const param_scheme = []; // empty b/c no uniform variables
+const MengerParams = []; // empty b/c no uniform variables
