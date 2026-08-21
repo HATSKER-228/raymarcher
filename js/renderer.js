@@ -48,18 +48,25 @@ const Renderer = (() => {
     }
 
     function buildProgramFor(fractalId) {
-        const shaderDef = FractalShaders.get(fractalId);
-        const fragSrc = ShaderCommon.build(shaderDef);
+        const fractalDef = FractalShaders.get(fractalId);
+        const fragSrc = ShaderCommon.build(fractalDef.shader);
         const program = createProgram(ShaderCommon.VERT_SRC, fragSrc);
         if (!program) return null;
+        
+        let uniformLocations = {};
+        for (const param of fractalDef.params) {
+            uniformLocations[param.key] = gl.getUniformLocation(program, param.uniform);
+        }
 
         return {
             program,
-            aPosition:   gl.getAttribLocation(program, 'a_position'),
-            uResolution: gl.getUniformLocation(program, 'u_resolution'),
-            uCamPos:     gl.getUniformLocation(program, 'u_cam_pos'),
-            uYaw:        gl.getUniformLocation(program, 'u_yaw'),
-            uPitch:      gl.getUniformLocation(program, 'u_pitch'),
+            aPosition:      gl.getAttribLocation(program, 'a_position'),
+            uResolution:    gl.getUniformLocation(program, 'u_resolution'),
+            uCamPos:        gl.getUniformLocation(program, 'u_cam_pos'),
+            uYaw:           gl.getUniformLocation(program, 'u_yaw'),
+            uPitch:         gl.getUniformLocation(program, 'u_pitch'),
+            paramLocations: uniformLocations,
+            params:         fractalDef.params
         };
     }
 
@@ -114,7 +121,7 @@ const Renderer = (() => {
         if (gl) gl.viewport(0, 0, canvas.width, canvas.height);
     }
 
-    function draw(camPos, camYaw, camPitch, fractalId) {
+    function draw(camPos, camYaw, camPitch, fractalId, paramValues) {
         if (!gl) return;
 
         useFractal(fractalId);
@@ -127,6 +134,12 @@ const Renderer = (() => {
         gl.uniform3fv(currentProgram.uCamPos, camPos);
         gl.uniform1f(currentProgram.uYaw, camYaw);
         gl.uniform1f(currentProgram.uPitch, camPitch);
+
+        for (const param of currentProgram.params) {
+            const loc   = currentProgram.paramLocations[param.key];
+            const value = paramValues[param.key];
+            gl.uniform1f(loc, value);
+        }
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
     }

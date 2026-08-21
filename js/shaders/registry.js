@@ -1,9 +1,9 @@
 const FractalShaders = (() => {
     const registry = {
-        0: MengerShader,
-        1: MandelbulbShader,
-        2: MandelboxShader,
-        3: SierpinskiShader
+        0: {shader: MengerShader,     params: MengerParams},
+        1: {shader: MandelbulbShader, params: MandelbulbParams},
+        2: {shader: MandelboxShader,  params: MandelboxParams},
+        3: {shader: SierpinskiShader, params: SierpinskiParams}
     };
 
     function get(fractalId) {
