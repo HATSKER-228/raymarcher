@@ -26,3 +26,5 @@ const MengerShader = `
         return d * SIZE;
     }
 `;
+
+const param_scheme = []; // empty b/c no uniform variables

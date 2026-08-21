@@ -1,16 +1,16 @@
 const SierpinskiShader = `
+    uniform float u_scale;
+
     float map(vec3 p) {
         const float SQRT3 = sqrt(3.0);
         const float SIZE = 4.0;
+        const int ITERATIONS = 11;
 
         mat3 R = mat3(
             (3.0-SQRT3)/6.0,    -SQRT3/3.0,   -(SQRT3+3.0)/6.0,
             SQRT3/3.0,          -SQRT3/3.0,   SQRT3/3.0,
             -(SQRT3+3.0)/6.0,   -SQRT3/3.0,   (3.0-SQRT3)/6.0
         );
-
-        const float SCALE = 2.0;
-        const int ITERATIONS = 11;
 
         float scale = 1.0;
         vec3 v1 = vec3(1.0, 1.0, 1.0);
@@ -26,8 +26,8 @@ const SierpinskiShader = `
             if (p.x + p.z < 0.0) p.xz = -p.zx;
             if (p.y + p.z < 0.0) p.yz = -p.zy;
 
-            p = p * SCALE - v1 * (SCALE - 1.0);
-            scale *= SCALE;
+            p = p * u_scale - v1 * (u_scale - 1.0);
+            scale *= u_scale;
         }
 
         float d = (max(max(-dot(p, v1), -dot(p, v2)), max(-dot(p, v3), -dot(p, v4))) - 1.0) / sqrt(3.0);
@@ -35,3 +35,7 @@ const SierpinskiShader = `
         return d / scale * SIZE;
     }
 `;
+
+const param_scheme = [
+    {key: 'scale', label: 'Scale', uniform: 'u_scale', min: '1.5', max: '10.0', step: '0.1', default: '2.0'}
+];

@@ -1,8 +1,9 @@
 const MandelboxShader = `
+    uniform float u_scale;
+
     float map(vec3 point) {
         const int ITERATIONS = 12;
 
-        const float SCALE        = 3.0;
         const float MIN_RADIUS2  = 0.25;   // minRadius^2  (minRadius = 0.5)
         const float FIXED_RADIUS2 = 1.0;   // fixedRadius^2 (fixedRadius = 1.0)
 
@@ -23,10 +24,14 @@ const MandelboxShader = `
                 dr *= factor;
             }
 
-            p  = p * SCALE + point;
-            dr = dr * abs(SCALE) + 1.0;
+            p  = p * u_scale + point;
+            dr = dr * abs(u_scale) + 1.0;
         }
 
         return length(p) / abs(dr);
     }
 `;
+
+const param_scheme = [
+    {key: 'scale', label: 'Scale', uniform: 'u_scale', min: '0.5', max: '4.0', step: '0.05', default: '3.0'}
+];
