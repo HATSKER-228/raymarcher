@@ -49,7 +49,7 @@ const Renderer = (() => {
 
     function buildProgramFor(fractalId) {
         const shaderDef = FractalShaders.get(fractalId);
-        const fragSrc = ShaderCommon.build(shaderDef.sdf);
+        const fragSrc = ShaderCommon.build(shaderDef);
         const program = createProgram(ShaderCommon.VERT_SRC, fragSrc);
         if (!program) return null;
 
