@@ -103,7 +103,6 @@ const Renderer = (() => {
         if (!currentProgram) return false;
 
         gl.clearColor(0.02, 0.03, 0.05, 1.0);
-        gl.enable(gl.DEPTH_TEST);
 
         console.log('[Renderer] WebGL context ready.');
         return true;

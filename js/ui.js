@@ -106,11 +106,12 @@ const UI = (() => {
         }
         const [, fractalId, x, y, z, yaw, pitch] = match;
 
-        selectFractal(parseInt(fractalId));
-
-        Camera.setPosition(parseFloat(x), parseFloat(y), parseFloat(z));
-        Camera.setYaw(parseFloat(yaw));
-        Camera.setPitch(parseFloat(pitch));
+        if (selectFractal(parseInt(fractalId))) {
+            Camera.setPosition(parseFloat(x), parseFloat(y), parseFloat(z));
+            Camera.setYaw(parseFloat(yaw));
+            Camera.setPitch(parseFloat(pitch));
+        }
+        
         return true;
     }
 

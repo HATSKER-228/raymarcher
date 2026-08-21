@@ -1,7 +1,4 @@
 const Settings = (() => {
-    // FPS cap by default
-    let curCap = 120.0;
-
     // DOM refs
     const mouseSensSlider = document.getElementById('mouse-sens-slider');
     const mouseSensSpan   = document.getElementById('mouse-sens-span');
@@ -9,17 +6,18 @@ const Settings = (() => {
     const moveSpeedSpan   = document.getElementById('move-speed-span');
     const hudToggle       = document.getElementById('hud-toggle');
     const HUD             = document.getElementById('HUD');
+    let curCap;
 
     // mouse sens slider
     mouseSensSlider.addEventListener('input', () => {
-        v = parseFloat(mouseSensSlider.value);
+        const v = parseFloat(mouseSensSlider.value);
         Camera.setMouseSens(v);
         mouseSensSpan.textContent = v.toFixed(4);
     });
 
     // move speed slider
     moveSpeedSlider.addEventListener('input', () => {
-        v = parseFloat(moveSpeedSlider.value);
+        const v = parseFloat(moveSpeedSlider.value);
         Camera.setMoveSpeed(v);
         moveSpeedSpan.textContent = v.toFixed(2);
     });
@@ -41,12 +39,15 @@ const Settings = (() => {
         cap = parseFloat(cap);
         if (!cap) curCap = null;
         else curCap = cap;
+        return true;
     }
     
     // FPS Cap Selector
     document.querySelectorAll('.fps-cap-btn').forEach(btn => {
         btn.addEventListener('click', () => selectFpsCap(btn.dataset.fps));
     });
+
+    selectFpsCap(document.querySelector('.fps-cap-btn.active').dataset.fps);
 
     function getFpsCap() {
         return curCap;
