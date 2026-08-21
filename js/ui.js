@@ -1,12 +1,5 @@
 const UI = (() => {
-    const FRACTAL_IDS = {
-        menger:     0,
-        mandelbulb: 1,
-        mandelbox:  2,
-        sierpinski: 3,
-    };
-
-    let activeFractal = 'menger';  // default
+    let activeFractal = 0;  // default
 
     // DOM refs
     const overlay      = document.getElementById('start-overlay');
@@ -49,16 +42,16 @@ const UI = (() => {
 
     // Esc is handled automatically by the browser
 
-    function selectFractal(name) {
+    function selectFractal(id) {
         document.querySelectorAll('.fractal-item:not(.locked)').forEach(i => {
             i.classList.remove('active');
             i.querySelector('.fractal-tag').textContent = '';
         });
-        const item = document.querySelector(`.fractal-item[data-fractal="${name}"]:not(.locked)`);
+        const item = document.querySelector(`.fractal-item[data-fractal="${id}"]:not(.locked)`);
         if (!item) return false;
         item.classList.add('active');
         item.querySelector('.fractal-tag').textContent = 'ACTIVE';
-        activeFractal = name;
+        activeFractal = id;
         return true;
     }
 
@@ -105,16 +98,15 @@ const UI = (() => {
 
     function applyLocation(str) {
         const match = str.trim().match(
-            /^(\w+):(-?[\d.]+),(-?[\d.]+),(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)$/
+            /^(\d+):(-?[\d.]+),(-?[\d.]+),(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)$/
         );
         if (!match) {
             console.warn('[UI] invalid location string:', str);
             return false;
         }
-        const [, fractalName, x, y, z, yaw, pitch] = match;
+        const [, fractalId, x, y, z, yaw, pitch] = match;
 
-        if (FRACTAL_IDS[fractalName] !== undefined)
-            selectFractal(fractalName);
+        selectFractal(parseInt(fractalId));
 
         Camera.setPosition(parseFloat(x), parseFloat(y), parseFloat(z));
         Camera.setYaw(parseFloat(yaw));
@@ -143,7 +135,7 @@ const UI = (() => {
     });
 
     function getActiveFractalId() {
-        return FRACTAL_IDS[activeFractal] ?? 0;
+        return activeFractal;
     }
 
     return { setDisplayedFPS, setStats, getActiveFractalId };
