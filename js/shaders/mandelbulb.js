@@ -37,5 +37,5 @@ const MandelbulbShader = `
 `;
 
 const MandelbulbParams = [
-    {key: 'power', label: 'Power', uniform: 'u_power', min: 3.0, max: 16.0, step: 0.1, default: 8.0}
+    {key: 'power', uniform: 'u_power', min: 3.0, max: 16.0, default: 8.0}
 ];
