@@ -9,7 +9,7 @@ const ShaderCommon = (() => {
     `;
 
     const FRAG_HEADER = `        
-        precision mediump float;
+        precision highp float;
 
         uniform vec2 u_resolution;
         uniform vec3 u_cam_pos;
@@ -19,23 +19,29 @@ const ShaderCommon = (() => {
 
     const FRAG_FOOTER = `
         vec3 calcNormal(vec3 p) {
-            float e = 0.001;
-            return normalize(vec3(
-                map(p + vec3(e, 0, 0)) - map(p - vec3(e, 0, 0)),
-                map(p + vec3(0, e, 0)) - map(p - vec3(0, e, 0)),
-                map(p + vec3(0, 0, e)) - map(p - vec3(0, 0, e))
-            ));
+            const float e = 0.00001;
+            const vec3 d1 = vec3(1, -1, -1);
+            const vec3 d2 = vec3(-1, -1, 1);
+            const vec3 d3 = vec3(-1, 1, -1);
+            const vec3 d4 = vec3(1, 1, 1);
+
+            return normalize(
+                d1 * map(p + e*d1) +
+                d2 * map(p + e*d2) + 
+                d3 * map(p + e*d3) +
+                d4 * map(p + e*d4)
+            );
         }
 
         float raymarch(vec3 origin, vec3 direction) {
             float t = 0.0;
 
-            for (int i = 0; i < 128; i++) {
+            for (int i = 0; i < 256; i++) {
                 vec3 p = origin + t * direction;
                 float d = map(p);
 
-                if (d < 0.001) return t;
-                if (t > 100.0) break;
+                if (d < 0.0006 * t) return t;
+                if (t > 25.0) break;
 
                 t += d;
             }

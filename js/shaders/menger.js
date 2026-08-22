@@ -8,7 +8,7 @@ const MengerShader = `
                             abs(p.z) - 1.0);
         float scale = 1.0;
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 10; i++) {
             vec3 p = mod(p * scale, 2.0) - 1.0;
             p = abs(1.0 - 3.0 * abs(p));
             scale *= 3.0;

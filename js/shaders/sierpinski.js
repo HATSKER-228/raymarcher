@@ -4,7 +4,7 @@ const SierpinskiShader = `
     float map(vec3 p) {
         const float SQRT3 = sqrt(3.0);
         const float SIZE = 4.0;
-        const int ITERATIONS = 11;
+        const int ITERATIONS = 15;
 
         mat3 R = mat3(
             (3.0-SQRT3)/6.0,    -SQRT3/3.0,   -(SQRT3+3.0)/6.0,
