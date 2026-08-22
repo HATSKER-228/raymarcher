@@ -77,3 +77,7 @@ input[type="checkbox"] {
     accent-color: var(--accent);
     cursor: pointer;
 }
+
+.fractal-params-block.hidden {
+    display: none;
+}

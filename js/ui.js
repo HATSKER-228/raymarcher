@@ -52,6 +52,7 @@ const UI = (() => {
         item.classList.add('active');
         item.querySelector('.fractal-tag').textContent = 'ACTIVE';
         activeFractal = id;
+        Settings.showFractalParams(id);
         return true;
     }
 
@@ -77,6 +78,8 @@ const UI = (() => {
         item.addEventListener('click', () => selectTab(item.dataset.tab));
     });
 
+    // setting HUD
+
     function setDisplayedFPS(fps) {
         fpsCounter.textContent = fps + ' FPS';
     }
@@ -89,27 +92,54 @@ const UI = (() => {
         angLine.textContent = `YAW: ${yawDeg}°  PITCH: ${pitchDeg}°`;
     }
 
+    // copy/paste location
+
     function encodeLocation() {
         const [x, y, z] = Camera.getPosition();
         const yaw   = Camera.getYaw();
         const pitch = Camera.getPitch();
-        return `${activeFractal}:${x.toFixed(4)},${y.toFixed(4)},${z.toFixed(4)},${yaw.toFixed(4)},${pitch.toFixed(4)}`;
+        const params = FractalShaders.get(activeFractal).params;
+        const values = Settings.getFractalParams(activeFractal);
+
+        const baseStrings = [x, y, z, yaw, pitch].map(n => n.toFixed(4));
+        const paramStrings = params.map(param => values[param.key].toFixed(4));
+        const allValues = baseStrings.concat(paramStrings);
+
+        return `${activeFractal}:${allValues.join(',')}`;
     }
 
     function applyLocation(str) {
-        const match = str.trim().match(
-            /^(\d+):(-?[\d.]+),(-?[\d.]+),(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)$/
-        );
-        if (!match) {
+        const [idPart, valuesPart] = str.trim().split(':');
+
+        if (!valuesPart) {
             console.warn('[UI] invalid location string:', str);
             return false;
         }
-        const [, fractalId, x, y, z, yaw, pitch] = match;
 
-        if (selectFractal(parseInt(fractalId))) {
-            Camera.setPosition(parseFloat(x), parseFloat(y), parseFloat(z));
-            Camera.setYaw(parseFloat(yaw));
-            Camera.setPitch(parseFloat(pitch));
+        const fractalId = parseInt(idPart);
+        const nums = valuesPart.split(',').map(parseFloat);
+
+        if (isNaN(fractalId) || nums.length < 5 || nums.slice(0, 5).some(isNaN)) {
+            console.warn('[UI] invalid location string:', str);
+            return false;
+        }
+
+        if (selectFractal(fractalId)) {
+            Camera.setPosition(nums[0], nums[1], nums[2]);
+            Camera.setYaw(nums[3]);
+            Camera.setPitch(nums[4]);
+
+            const params = FractalShaders.get(fractalId).params;
+            params.forEach((param, i) => {
+                let value = nums.slice(5)[i];
+                if (value === undefined || isNaN(value)) {
+                    value = param.default;
+                } else {
+                    value = Math.min(Math.max(param.min, value), param.max);
+                }
+
+                Settings.setFractalParam(fractalId, param.key, value);
+            });
         }
         
         return true;

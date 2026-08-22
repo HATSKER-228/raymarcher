@@ -104,7 +104,37 @@
                     <label class="setting-label">Show HUD</label>
                 </div>
 
-                
+                <div id="ui-divider"></div>
+
+                <div id="fractal-params-container">
+                    <div class="fractal-params-block hidden" data-fractal="1">
+                        <div class="slider">
+                            <div class="setting-label-row">
+                                <label class="setting-label">Power</label>
+                                <span data-key='power' class="setting-span">8.00</span>
+                            </div>
+                            <input type="range" class="fractal-param-slider" data-key="power" min="3.0" max="16.0" value="8.0" step="0.1">
+                        </div>
+                    </div>
+                    <div class="fractal-params-block hidden" data-fractal="2">
+                        <div class="slider">
+                            <div class="setting-label-row">
+                                <label class="setting-label">Scale</label>
+                                <span data-key='scale' class="setting-span">3.00</span>
+                            </div>
+                            <input type="range" class="fractal-param-slider" data-key="scale" min="-6.0" max="6.0" value="3.0" step="0.01">
+                        </div>
+                    </div>
+                    <div class="fractal-params-block hidden" data-fractal="3">
+                        <div class="slider">
+                            <div class="setting-label-row">
+                                <label class="setting-label">Scale</label>
+                                <span data-key='scale' class="setting-span">2.00</span>
+                            </div>
+                            <input type="range" class="fractal-param-slider" data-key="scale" min="1.5" max="4.0" value="2.0" step="0.02">
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>

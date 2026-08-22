@@ -49,10 +49,52 @@ const Settings = (() => {
 
     selectFpsCap(document.querySelector('.fps-cap-btn.active').dataset.fps);
 
+    // fractals' uniform params
+
+    let fractalParamValues = {};
+    for (let id = 0; id < 4; id++) {
+        const params = FractalShaders.get(id).params;
+        const values = {};
+        params.forEach(param => { values[param.key] = param.default; });
+        fractalParamValues[id] = values;
+    }
+
+    showFractalParams(0); // menger by default
+
+    function getFractalParams(id) {
+        return fractalParamValues[id] || {};
+    }
+
+    function setFractalParam(id, key, value) {
+        fractalParamValues[id][key] = value;
+
+        const slider = document.querySelector(`.fractal-params-block[data-fractal="${id}"] input[data-key="${key}"]`);
+        const span   = document.querySelector(`.fractal-params-block[data-fractal="${id}"] span[data-key="${key}"]`);
+        if (slider) slider.value = value;
+        if (span) span.textContent = value.toFixed(2);
+    }
+
+    // update value in storage based on slider
+    document.querySelectorAll('.fractal-param-slider').forEach(slider => {
+        slider.addEventListener('input', () => {
+            const key = slider.dataset.key;
+            const block = slider.closest('.fractal-params-block');
+            const id = parseInt(block.dataset.fractal);
+            const value = parseFloat(slider.value);
+            setFractalParam(id, key, value);
+        });
+    });
+
+    function showFractalParams(id) {
+        document.querySelectorAll('.fractal-params-block').forEach(block => { block.classList.add('hidden'); });
+        const target = document.querySelector(`.fractal-params-block[data-fractal="${id}"]`);
+        if (target) target.classList.remove('hidden');
+    }
+
     function getFpsCap() {
         return curCap;
     }
 
-    return { getFpsCap };
+    return { getFpsCap, getFractalParams, setFractalParam, showFractalParams };
 
 })();
