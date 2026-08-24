@@ -1,11 +1,12 @@
 const Settings = (() => {
     // DOM refs
-    const mouseSensSlider = document.getElementById('mouse-sens-slider');
-    const mouseSensSpan   = document.getElementById('mouse-sens-span');
-    const moveSpeedSlider = document.getElementById('move-speed-slider');
-    const moveSpeedSpan   = document.getElementById('move-speed-span');
-    const hudToggle       = document.getElementById('hud-toggle');
-    const HUD             = document.getElementById('HUD');
+    const mouseSensSlider  = document.getElementById('mouse-sens-slider');
+    const mouseSensSpan    = document.getElementById('mouse-sens-span');
+    const moveSpeedSlider  = document.getElementById('move-speed-slider');
+    const moveSpeedSpan    = document.getElementById('move-speed-span');
+    const hudToggle        = document.getElementById('hud-toggle');
+    const HUD              = document.getElementById('HUD');
+    const useColorsToggle  = document.getElementById("use-colors-toggle");
     let curCap;
 
     // mouse sens slider
@@ -30,6 +31,10 @@ const Settings = (() => {
             HUD.classList.add('hidden');
     });
 
+    function getUseColors() {
+        return useColorsToggle.checked;
+    }
+    
     function selectFpsCap(cap) {
         document.querySelectorAll('.fps-cap-btn').forEach(btn => { btn.classList.remove('active')});
         const btn = document.querySelector(`.fps-cap-btn[data-fps="${cap}"]`);
@@ -86,15 +91,21 @@ const Settings = (() => {
     });
 
     function showFractalParams(id) {
+        const subtitle = document.querySelector('#fractal-params-subtitle');
         document.querySelectorAll('.fractal-params-block').forEach(block => { block.classList.add('hidden'); });
         const target = document.querySelector(`.fractal-params-block[data-fractal="${id}"]`);
         if (target) target.classList.remove('hidden');
+        
+        if (id == 0)
+                subtitle.classList.add('hidden');
+            else
+                subtitle.classList.remove('hidden');
     }
 
     function getFpsCap() {
         return curCap;
     }
 
-    return { getFpsCap, getFractalParams, setFractalParam, showFractalParams };
+    return { getFpsCap, getFractalParams, setFractalParam, showFractalParams, getUseColors };
 
 })();

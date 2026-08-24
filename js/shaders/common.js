@@ -11,10 +11,11 @@ const ShaderCommon = (() => {
     const FRAG_HEADER = `        
         precision highp float;
 
-        uniform vec2 u_resolution;
-        uniform vec3 u_cam_pos;
+        uniform vec2  u_resolution;
+        uniform vec3  u_cam_pos;
         uniform float u_yaw;
         uniform float u_pitch;
+        uniform bool  u_useColors;
 
         const float PI = 3.14159265359;
         vec3 g_orbitColor = vec3(1.0);
@@ -89,7 +90,14 @@ const ShaderCommon = (() => {
             }
             
             vec3 p = origin + t * direction;
-            map(p);   // setting g_orbitColor;
+
+            if (u_useColors) {
+                map(p);         // setting g_orbitColor
+            } else {
+                g_orbitColor = vec3(1.0);
+            }
+            vec3 color = g_orbitColor;
+
             vec3 n = calcNormal(p);
 
             vec3 lightDir = normalize(vec3(0.5, -2.0, -1.0));
@@ -97,7 +105,7 @@ const ShaderCommon = (() => {
             float ambient = 0.5;
 
             float brightness = ambient + diffuse;
-            gl_FragColor = vec4(g_orbitColor*brightness, 1.0);
+            gl_FragColor = vec4(color*brightness, 1.0);
         }
     `;
 

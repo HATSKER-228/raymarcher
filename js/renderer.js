@@ -65,6 +65,7 @@ const Renderer = (() => {
             uCamPos:        gl.getUniformLocation(program, 'u_cam_pos'),
             uYaw:           gl.getUniformLocation(program, 'u_yaw'),
             uPitch:         gl.getUniformLocation(program, 'u_pitch'),
+            uUseColors:     gl.getUniformLocation(program, 'u_useColors'),
             paramLocations: uniformLocations,
             params:         fractalDef.params
         };
@@ -121,7 +122,7 @@ const Renderer = (() => {
         if (gl) gl.viewport(0, 0, canvas.width, canvas.height);
     }
 
-    function draw(camPos, camYaw, camPitch, fractalId, paramValues) {
+    function draw(camPos, camYaw, camPitch, fractalId, paramValues, useColors) {
         if (!gl) return;
 
         useFractal(fractalId);
@@ -134,7 +135,8 @@ const Renderer = (() => {
         gl.uniform3fv(currentProgram.uCamPos, camPos);
         gl.uniform1f(currentProgram.uYaw, camYaw);
         gl.uniform1f(currentProgram.uPitch, camPitch);
-
+        gl.uniform1i(currentProgram.uUseColors, useColors);
+        
         for (const param of currentProgram.params) {
             const loc   = currentProgram.paramLocations[param.key];
             const value = paramValues[param.key];

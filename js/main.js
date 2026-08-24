@@ -28,7 +28,7 @@
             const camPitch = Camera.getPitch();
             const fractalId = UI.getActiveFractalId();
 
-            Renderer.draw(camPos, camYaw, camPitch, fractalId, Settings.getFractalParams(fractalId));
+            Renderer.draw(camPos, camYaw, camPitch, fractalId, Settings.getFractalParams(fractalId), Settings.getUseColors());
             UI.setStats(camPos, camYaw, camPitch);
 
             renderTimer -= renderInterval;

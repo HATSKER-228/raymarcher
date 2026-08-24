@@ -41,7 +41,6 @@ input[type="range"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
 }
 
 #fps-cap-btn-group {
@@ -67,10 +66,11 @@ input[type="range"] {
 
 /* hud toggle */
 
-#hud-toggle-row {
+.checkbox-row {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin: 14px 0px;
 }
 
 input[type="checkbox"] {
