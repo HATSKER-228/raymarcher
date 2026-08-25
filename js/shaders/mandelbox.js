@@ -1,6 +1,15 @@
 const MandelboxShader = `
     uniform float u_scale;
 
+    vec3 palette(float t) {
+        vec3 a = vec3(0.5, 0.5, 0.5);
+        vec3 b = vec3(0.5, 0.5, 0.5);
+        vec3 c = vec3(1.0, 1.0, 1.0);
+        vec3 d = vec3(0.0, 0.33, 0.67) + vec3(0.85);
+        
+        return normalize(a + b * cos(2.0*PI * (c*t + d)));
+    }
+
     float map(vec3 point) {
         const int ITERATIONS = 12;
 
@@ -9,8 +18,10 @@ const MandelboxShader = `
 
         vec3  p  = point;
         float dr = 1.0;
+        float trap = 1000.0;
 
         for (int i = 0; i < ITERATIONS; i++) {
+            trap = min(trap, length(p));
             p = clamp(p, -1.0, 1.0) * 2.0 - p;
 
             float r2 = dot(p, p);
@@ -27,6 +38,8 @@ const MandelboxShader = `
             p  = p * u_scale + point;
             dr = dr * abs(u_scale) + 1.0;
         }
+                    
+        g_orbitColor = palette(log(dr)*2.0);
 
         return length(p) / abs(dr);
     }

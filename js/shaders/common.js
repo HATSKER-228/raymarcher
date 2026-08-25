@@ -22,15 +22,6 @@ const ShaderCommon = (() => {
     `;
 
     const FRAG_FOOTER = `
-        vec3 palette(float t) {
-            vec3 a = vec3(0.5, 0.5, 0.5);
-            vec3 b = vec3(0.5, 0.5, 0.5);
-            vec3 c = vec3(1.0, 1.0, 1.0);
-            vec3 d = vec3(0.0, 0.33, 0.67);
-            
-            return normalize(a + b * cos(2.0*PI * (c*t + d)));
-        }
-
         vec3 calcNormal(vec3 p) {
             const float e = 0.00001;
             const vec3 d1 = vec3(1, -1, -1);
@@ -102,7 +93,7 @@ const ShaderCommon = (() => {
 
             vec3 lightDir = normalize(vec3(0.5, -2.0, -1.0));
             float diffuse = max(dot(n, lightDir), 0.0);
-            float ambient = 0.5;
+            float ambient = 0.25;
 
             float brightness = ambient + diffuse;
             gl_FragColor = vec4(color*brightness, 1.0);
